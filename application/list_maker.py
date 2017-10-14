@@ -10,8 +10,8 @@ df = pd.DataFrame(l, columns=['name','images'])
 res = df.set_index('name')['images'].apply(pd.Series).stack()
 
 res = res.reset_index()
-res.columns = ["species_name", "item", "image_name"]
+res.columns = ["kaggle_label", "item", "image_name"]
 
 # WRITE IN CSV
 
-res.to_csv('image_list.csv', columns=['image_name','species_name'], index=False)
+res.to_csv('image_list.csv', columns=['image_name','kaggle_label'], index=False)
