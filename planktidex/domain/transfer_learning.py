@@ -9,7 +9,7 @@ from keras import backend as K
 
 
 class PlanktonClassifier:
-    N_CLASSES = 2
+    N_CLASSES = 46
     
     def __init__(self, base):
         self.base = base
@@ -65,7 +65,7 @@ class Generator:
 
     
 
-NEW_CLASS_DIRECTORY = "/home/jeanbaptiste/dogs_cats/"
+NEW_CLASS_DIRECTORY = "/home/jeanbaptiste/new_train"
 DATA_AUGMENTATION = Generator.flow_from_directory(NEW_CLASS_DIRECTORY)
 
 
@@ -78,14 +78,18 @@ planktidex.freeze_cnn()
 
 # Train the model
 nb_train_samples = 4125
-epochs = 5
-steps_per_epoch = 20
+epochs = 10
+steps_per_epoch = 50
 planktidex.model.fit_generator(DATA_AUGMENTATION,
                                steps_per_epoch,
                                epochs=epochs)
 
 
-img_path = 'cat1.jpg'
+
+
+
+
+img_path = "/home/jeanbaptiste/new_train/diatom/9970.jpg"
 img = image.load_img(img_path, target_size=(299, 299))
 x = image.img_to_array(img)
 x = np.expand_dims(x, axis=0)
